@@ -1,14 +1,7 @@
 ZipCode,Age,Gender,Coverage Type,Average Monthly Premium,Highest Rate,Lowest Rate
-99501,30,Male,State Minimum Liability,$46,$56,$26
-99501,30,Male,Liability Only - $50K/$100/$50K,$54,$79,$35
-99501,30,Male,Liability Only - $50K/$100/$50K,$46,$56,$26
-99501,30,Male,Full Coverage - $100K/$300K/$100K,$54,$79,$35
-99501,30,Female,State Minimum Liability,$54,$79,$35
-99501,30,Female,Liability Only - $50K/$100/$50K,$54,$85,$31
-99501,30,Female,Full Coverage - $100K/$300K/$100K,$54,$85,$31
-99501,50,Male,State Minimum Liability,$54,$85,$31
-99501,50,Male,Liability Only - $50K/$100/$50K,$46,$67,$28
-99501,50,Male,Full Coverage - $100K/$300K/$100K,$46,$67,$28
-99501,50,Female,State Minimum Liability,$46,$67,$28
-99501,50,Female,Liability Only - $50K/$100/$50K,$46,$70,$28
-99501,50,Female,Full Coverage - $100K/$300K/$100K,$46,$70,$28
+99501,30,Male,State Minimum Liability,$54,$79,$35
+99501,30,Male,Liability Only - $50K/$100/$50K,$55,$79,$35
+99501,30,Male,Full Coverage - $100K/$300K/$100K,$154,$185,$115
+99501,30,Female,State Minimum Liability,$54,$85,$31
+99501,30,Female,Liability Only - $50K/$100/$50K,$55,$85,$32
+99501,30,Female,Full Coverage - $100K/$300K/$100K,$150,$176,$104

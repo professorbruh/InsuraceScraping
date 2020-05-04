@@ -98,7 +98,7 @@ def writetocsv(current_zipcode):
 
             for k in range(cont_k, 3):
 
-                driver.find_element_by_xpath("/html/body/main/article/section/section/div/div[3]/section[2]/div[3]/form/div[3]/div[2]/div["+str(k+1)+"]"+"/label")
+                driver.find_element_by_xpath("/html/body/main/article/section/section/div/div[3]/section[2]/div[3]/form/div[3]/div[2]/div["+str(k+1)+"]"+"/label").click()
                 time.sleep(2)
 
                 driver.find_element_by_xpath('/html/body/main/article/section/section/div/div[3]/section[2]/div[3]/form/input[2]').click()
@@ -106,8 +106,6 @@ def writetocsv(current_zipcode):
                 time.sleep(3)
 
                 html = soup(driver.page_source, "html.parser")
-
-                m = html.find("div", class_="average-rate-container")
 
                 average_monthly_premium = str(html.find("span", class_="zip-monthly-premium-value").text)
 
