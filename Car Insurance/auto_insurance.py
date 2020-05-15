@@ -92,18 +92,17 @@ def writetocsv(current_zipcode):
 
         for j in range(cont_j, 2):
 
-            time.sleep(5)
+            time.sleep(2)
 
             driver.find_element_by_xpath("/html/body/main/article/section/section/div/div[3]/section[2]/div[3]/form/div[2]/label["+str(j+1)+"]").click()
 
             for k in range(cont_k, 3):
 
                 driver.find_element_by_xpath("/html/body/main/article/section/section/div/div[3]/section[2]/div[3]/form/div[3]/div[2]/div["+str(k+1)+"]"+"/label").click()
-                time.sleep(2)
 
                 driver.find_element_by_xpath('/html/body/main/article/section/section/div/div[3]/section[2]/div[3]/form/input[2]').click()
 
-                time.sleep(3)
+                time.sleep(2)
 
                 html = soup(driver.page_source, "html.parser")
 

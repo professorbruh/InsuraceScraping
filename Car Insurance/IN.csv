@@ -1,0 +1,25 @@
+ZipCode,Age,Gender,Coverage Type,Average Monthly Premium,Highest Rate,Lowest Rate
+46001,30,Male,State Minimum Liability,$36,$56,$20
+46001,30,Male,Liability Only - $50K/$100/$50K,$39,$61,$22
+46001,30,Male,Full Coverage - $100K/$300K/$100K,$101,$157,$61
+46001,30,Female,State Minimum Liability,$38,$57,$24
+46001,30,Female,Liability Only - $50K/$100/$50K,$41,$61,$26
+46001,30,Female,Full Coverage - $100K/$300K/$100K,$102,$154,$68
+46001,50,Male,State Minimum Liability,$35,$58,$22
+46001,50,Male,Liability Only - $50K/$100/$50K,$38,$62,$24
+46001,50,Male,Full Coverage - $100K/$300K/$100K,$92,$155,$50
+46001,50,Female,State Minimum Liability,$33,$54,$21
+46001,50,Female,Liability Only - $50K/$100/$50K,$36,$58,$23
+46001,50,Female,Full Coverage - $100K/$300K/$100K,$89,$142,$53
+46001,70,Male,State Minimum Liability,$38,$61,$26
+46001,70,Male,Liability Only - $50K/$100/$50K,$42,$66,$27
+46001,70,Male,Full Coverage - $100K/$300K/$100K,$96,$155,$55
+46001,70,Female,State Minimum Liability,$34,$57,$23
+46001,70,Female,Liability Only - $50K/$100/$50K,$37,$61,$26
+46001,70,Female,Full Coverage - $100K/$300K/$100K,$88,$142,$53
+46011,30,Male,State Minimum Liability,$37,$56,$20
+46011,30,Male,Liability Only - $50K/$100/$50K,$41,$61,$22
+46011,30,Male,Full Coverage - $100K/$300K/$100K,$103,$161,$61
+46011,30,Female,State Minimum Liability,$39,$57,$24
+46011,30,Female,Liability Only - $50K/$100/$50K,$42,$61,$26
+46011,30,Female,Full Coverage - $100K/$300K/$100K,$104,$157,$69
