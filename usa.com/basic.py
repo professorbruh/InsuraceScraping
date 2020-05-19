@@ -4,7 +4,7 @@ from urllib.request import urlopen as uReq
 
 import json
 
-url = "http://www.usa.com/02111-ma.htm"
+url = "http://www.usa.com/99501-ak.htm"
 
 uClient = uReq(url)
 
@@ -24,16 +24,30 @@ for i in tables:
     table_container = i.find_all("td")
 
     if table_container[1].text.find("rank #") == -1:
-        dict_obj[table_container[0].text] = table_container[1].text
 
-    elif table_container[1].text.find("see\x") > 0:
-        dict_obj[table_container[0].text] = table_container[1].text
+        if table_container[1].text.find("see") > 0:
+            dict_obj[table_container[0].text] = table_container[1].find('a').text
+
+        else:
+            dict_obj[table_container[0].text] = table_container[1].text
 
     else:
-        print("yes")
+        results = table_container[1].find_all('a')
+        k=0
+        print(len(results))
+        if len(results)>1:
+            k = 1
+        print(results[k].text)
+        inner_dict = {
+            table_container[0].text: results[0].text,
+            "rank": results[k].text
+        }
+        dict_obj[table_container[0].text] = inner_dict
 
 
-print(dict_obj)
+with open('test.json', 'w') as json_file:
+    json.dump(dict_obj, json_file)
+
 
 
 
