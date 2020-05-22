@@ -17,8 +17,7 @@ def to_json(zip):
     tables = container.find_all("tr")
 
     dict_obj = {}
-    dict_obj["Zipcode"] = zip
-
+    act_dict_obj = {}
     for i in tables:
         table_container = i.find_all("td")
 
@@ -43,8 +42,9 @@ def to_json(zip):
             }
             dict_obj[table_container[0].text] = inner_dict
 
+    act_dict_obj[zip] = dict_obj
     with open('test.json', 'a') as json_file:
-        json.dump(dict_obj, json_file,indent = 4, separators="\t\n")
+        json.dump(act_dict_obj, json_file,indent = 4, separators="\t\n")
 
 f = open("zipcode.dat", "r")
 page_html = None
@@ -52,7 +52,8 @@ reader = csv.reader(f, delimiter="\t")
 
 for i in reader:
     url = "http://www.usa.com/" + i[0] + "-" + i[1].lower() + ".htm"
-    print(url)
+    url2 = "http://www.usa.com/"+i[0]+"-"+i[1]+"-population-and-races.htm"
+    print(i[0])
     uClient = uReq(url)
 
     page_html = uClient.read()
