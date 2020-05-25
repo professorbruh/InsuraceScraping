@@ -9,7 +9,7 @@ import csv
 import os
 
 
-def to_json(zip):
+def to_json():
     parsed_page = soup(page_html, "html.parser")
 
     container = parsed_page.find("td", valign="top")
@@ -42,9 +42,13 @@ def to_json(zip):
             }
             dict_obj[table_container[0].text] = inner_dict
 
-    act_dict_obj[zip] = dict_obj
-    with open('test.json', 'a') as json_file:
-        json.dump(act_dict_obj, json_file,indent = 4, separators="\t\n")
+    return dict_obj
+
+def tojson2():
+
+    parsed_page = soup(page_html2,"html.parser")
+
+    container = parsed_page.find_all("table", class_="tbb")
 
 f = open("zipcode.dat", "r")
 page_html = None
@@ -59,4 +63,12 @@ for i in reader:
     page_html = uClient.read()
 
     uClient.close()
-    to_json(i[0])
+
+    uClient2 = uReq(url2)
+
+    page_html2 = uClient2.read()
+
+    uClient.close()
+
+    basic_info = to_json()
+    population = to_json2()
