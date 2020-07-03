@@ -14,12 +14,16 @@ uClient.close()
 
 container = parsed_page.find_all("table", class_="tbb")
 
+container_dict = {}
+
 for i in container:
     j = i.find_all("tr")
     for k in j:
         m = k.find_all("td")
-        print(m[0].text)
-    break
+        key = m[0].text
+        if key.find(":") > 0:
+            key = key[0:len(key)-1]
+        print(key, m[1].text)
 
 
 print(len(container))
