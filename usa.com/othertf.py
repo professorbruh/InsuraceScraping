@@ -15,6 +15,7 @@ uClient.close()
 container = parsed_page.find_all("table")
 c2= parsed_page.find_all("h3")
 container_dict = {}
+print(len(c2),",",len(container))
 
 header_dict = {
 
@@ -56,41 +57,19 @@ header_dict = {
 
     18: "Poverty Level"
 }
-index = 0
-outer_dict = {}
-inner_dict = {}
-inter_dict = {}
+index = -1
 
 for i in container:
-    if index == 0:
-        index+=1
-        continue
-
-    outer_key = header_dict[index]
+    index+=1
+    print("This is ",index,"\n")
     j = i.find_all("tr")
-    inner_key = header_dict[index]
-
+    print(len(j))
     for k in j:
         m = k.find_all("td")
         key = m[0].text
-        if inner_key == "\\xa0":
-            continue
         if key.find(":") > 0:
             key = key[0:len(key)-1]
-        inner_dict [key] = str(m[1].text)
-
-    if index!= 18 and inner_key != header_dict[index+1]:
-        print("Current is ",header_dict[index],"\n","Next is :",header_dict[index+1])
-        if outer_key == "\xa0":
-            continue
-        outer_dict [outer_key] = inner_dict
-        inner_dict = {}
-    else:
-        outer_dict[outer_key] = inner_dict
-    index += 1
+        print(key, m[1].text)
 
 
-
-
-
-print(outer_dict)
+print(len(container))
