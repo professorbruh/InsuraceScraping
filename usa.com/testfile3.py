@@ -12,6 +12,7 @@ parsed_page = soup(page_html, "html.parser")
 
 uClient.close()
 
+
 container = parsed_page.find_all("table")
 c2= parsed_page.find_all("h3")
 container_dict = {}
@@ -56,12 +57,15 @@ header_dict = {
 
     18: "Poverty Level"
 }
+
 index = 0
 outer_dict = {}
 inner_dict = {}
 inter_dict = {}
+inter_index = 0
 
 for i in container:
+
     if index == 0:
         index+=1
         continue
@@ -79,18 +83,25 @@ for i in container:
             key = key[0:len(key)-1]
         inner_dict [key] = str(m[1].text)
 
+    inter_dict[inter_index] = inner_dict
+    inter_index+=1
+    #print(inter_dict)
+
     if index!= 18 and inner_key != header_dict[index+1]:
         print("Current is ",header_dict[index],"\n","Next is :",header_dict[index+1])
         if outer_key == "\xa0":
             continue
-        outer_dict [outer_key] = inner_dict
+        outer_dict [outer_key] = inter_dict
         inner_dict = {}
+        inter_dict = {}
+        inter_index = 0
+
     else:
-        outer_dict[outer_key] = inner_dict
+        outer_dict[outer_key] = inter_dict
     index += 1
 
 
 
 
 
-print(outer_dict)
+p
