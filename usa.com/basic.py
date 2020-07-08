@@ -64,7 +64,7 @@ def to_json2():
 
 def to_json3():
 
-    parsed_page = soup(page_html, "html.parser")
+    parsed_page = soup(page_html3, "html.parser")
     container = parsed_page.find_all("table")
     c2 = parsed_page.find_all("h3")
     container_dict = {}
@@ -140,7 +140,7 @@ def to_json3():
         # print(inter_dict)
 
         if index != 18 and inner_key != header_dict[index + 1]:
-            print("Current is ", header_dict[index], "\n", "Next is :", header_dict[index + 1])
+            #print("Current is ", header_dict[index], "\n", "Next is :", header_dict[index + 1])
             if outer_key == "\xa0":
                 continue
             outer_dict[outer_key] = inter_dict
@@ -162,8 +162,10 @@ reader = csv.reader(f, delimiter="\t")
 for i in reader:
     url = "http://www.usa.com/" + i[0] + "-" + i[1].lower() + ".htm"
     url2 = "http://www.usa.com/"+i[0]+"-"+i[1]+"-population-and-races.htm"
-    url3 =  "http://www.usa.com/"+i[0]+"-"+i[1]+"income-and-careers.htm"
+    url3 =  "http://www.usa.com/"+i[0]+"-"+i[1].lower()+"-income-and-careers.htm"
     print(i[0])
+
+    print(url3)
 
     path = os.getcwd() + "\\" + i[0]
 
@@ -183,15 +185,21 @@ for i in reader:
 
     basic_info = to_json()
     population = to_json2()
+    income_careers = to_json3()
+    print(income_careers)
 
     filepath_basic = path + "\\" + "basic_info.html"
     filepath_population = path + "\\" + "population.html"
+    filepath_income_careers = path+ "\\" + "income_careers.html"
 
     file_basic = open(filepath_basic, 'w')
     file_basic.write(str(page_html))
 
     file_population = open(filepath_population, "w")
     file_population.write(str(page_html2))
+
+    file_income_careers = open(filepath_income_careers, 'w')
+    file_income_careers.write(str(page_html3))
 
 
 
