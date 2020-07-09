@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup as soup
 
 from urllib.request import urlopen as uReq
 
-url = "http://www.usa.com/99501-ak-income-and-careers.htm"
+url = "http://www.usa.com/99501-ak-housing.htm"
 
 uClient = uReq(url)
 
@@ -14,55 +14,59 @@ uClient.close()
 
 
 container = parsed_page.find_all("table")
-c2 = parsed_page.find_all("h3")
+
 container_dict = {}
 
 header_dict = {
 
     0 : "Empty",
 
-    1 : "Per_Capita_Income",
+    1 : "House_Value",
 
-    2 : "Median_Individual_Worker_Income",
+    2 : "House_Value",
 
-    3:  "Median_Individual_Worker_Income",
+    3:  "Housing_Occupancy",
 
-    4:  "Median_Individual_Worker_Income",
+    4:  "Year_Structure_Built",
 
-    5:  "Household_Income",
+    5:  "Mortage_Status",
 
-    6:  "Household_Income",
+    6:  "Mortage_Cost",
 
-    7:  "Household_Income",
+    7:  "Mortage_Cost",
 
-    8:  "Household_Income",
+    8:  "Mortage_Cost",
 
-    9:  "Family_Income",
+    9:  "Mortage_Cost",
 
-    10:  "Family_Income",
+    10:  "No_Mortage",
 
-    11: "Median_Household_Income_by_Races",
+    11: "No_Mortage",
 
-    12: "Median_Household_Income_by_Age",
+    12: "No_Mortage",
 
-    13: "Employment Status",
+    13: "No_Mortage",
 
-    14: "Commuting_to_Work",
+    14: "Units_In_Structure",
 
-    15: "Commuting_to_Work",
+    15: "Rooms",
 
-    16: "Careers",
+    16: "Bedrooms",
 
-    17: "Careers",
+    17: "House_Heating_Fuel",
 
-    18: "Poverty Level"
+    18: "Gross_Rent",
+
+    19: "Vehicle_Available"
 }
 
 index = 0
+
 outer_dict = {}
 inner_dict = {}
 inter_dict = {}
 inter_index = -1
+
 
 for i in container:
 
@@ -77,15 +81,17 @@ for i in container:
     for k in j:
         m = k.find_all("td")
         key = m[0].text
+        if inner_key == "\\xa0":
+            continue
         if key.find(":") > 0:
             key = key[0:len(key)-1]
-        inner_dict [key] = str(m[1].text)
+        inner_dict[key] = str(m[1].text)
 
-    inter_index = inter_index + 1
+    inter_index += 1
     inter_dict[inter_index] = inner_dict
     inner_dict = {}
 
-    if index!= 18 and inner_key != header_dict[index+1]:
+    if index!= 19 and inner_key != header_dict[index+1]:
         #print("Current is ",header_dict[index],"\n","Next is :",header_dict[index+1])
         if outer_key == "\xa0":
             continue
