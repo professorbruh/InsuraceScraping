@@ -285,7 +285,6 @@ for i in reader:
     population = to_json2()
     income_careers = to_json3()
     housing = to_json4()
-    print(housing)
 
     filepath_basic = path + "\\" + "basic_info.html"
     filepath_population = path + "\\" + "population.html"
