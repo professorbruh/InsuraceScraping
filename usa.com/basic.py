@@ -276,19 +276,27 @@ def to_json5():
 f = open("zipcode.dat", "r")
 page_html = None
 reader = csv.reader(f, delimiter="\t")
-
+flag = True
+code = input("Enter Code")
+final_dict = {}
 for i in reader:
+    if i[1] != code.upper():
+        continue
+
+    path = os.getcwd() + "\\" + i[1]
+
     url = "http://www.usa.com/" + i[0] + "-" + i[1].lower() + ".htm"
     url2 = "http://www.usa.com/"+i[0]+"-"+i[1]+"-population-and-races.htm"
     url3 =  "http://www.usa.com/"+i[0]+"-"+i[1].lower()+"-income-and-careers.htm"
     url4 =  "http://www.usa.com/"+i[0]+"-"+i[1].lower()+"-housing.htm"
     url5 =  "http://www.usa.com/"+i[0]+"-"+i[1].lower()+"-school-district.htm"
-    print(i[0])
 
-    path = os.getcwd() + "\\" + i[1]
+
 
     if path_.exists(path):
         path = path + "\\" +i[0]
+        if path_.exists(path):
+            continue
         os.mkdir(path)
     else:
         os.mkdir(path)
@@ -321,6 +329,18 @@ for i in reader:
     housing = to_json4()
     education = to_json5()
 
+    final_dict[i[0]] = {
+        "Basic_Info": basic_info,
+        "Population": population,
+        "Income_Careers": income_careers,
+        "Housing": housing,
+        "Education": education,
+        }
+
+    with open(i[1]+".json", "a") as outfile:
+        json.dump(final_dict, outfile,indent = 4)
+    final_dict = {}
+
     filepath_basic = path + "\\" + "basic_info.html"
     filepath_population = path + "\\" + "population.html"
     filepath_income_careers = path+ "\\" + "income_careers.html"
@@ -341,6 +361,11 @@ for i in reader:
 
     file_housing = open(filepath_education,'w')
     file_housing.write(str(page_html5))
+
+
+    print(i[0])
+
+
 
 
 
