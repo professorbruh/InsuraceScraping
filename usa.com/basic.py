@@ -8,6 +8,8 @@ import csv
 
 import os
 
+from os import path as path_
+
 
 def to_json():
     parsed_page = soup(page_html, "html.parser")
@@ -250,6 +252,27 @@ def to_json4():
 
     return outer_dict
 
+def to_json5():
+    parsed_page = soup(page_html, "html.parser")
+
+    school_container1 = parsed_page.find_all("div", class_="plb")
+
+    school_container2 = parsed_page.find_all("div", class_="plw")
+
+    index = -1
+
+    dict = {}
+
+    for i in school_container1:
+        index += 1
+        dict[index] = i.text
+
+    for i in school_container2:
+        index += 1
+        dict[index] = i.text
+
+    return dict
+
 f = open("zipcode.dat", "r")
 page_html = None
 reader = csv.reader(f, delimiter="\t")
@@ -259,11 +282,18 @@ for i in reader:
     url2 = "http://www.usa.com/"+i[0]+"-"+i[1]+"-population-and-races.htm"
     url3 =  "http://www.usa.com/"+i[0]+"-"+i[1].lower()+"-income-and-careers.htm"
     url4 =  "http://www.usa.com/"+i[0]+"-"+i[1].lower()+"-housing.htm"
+    url5 =  "http://www.usa.com/"+i[0]+"-"+i[1].lower()+"-school-district.htm"
     print(i[0])
 
-    path = os.getcwd() + "\\" + i[0]
+    path = os.getcwd() + "\\" + i[1]
 
-    os.mkdir(path)
+    if path_.exists(path):
+        path = path + "\\" +i[0]
+        os.mkdir(path)
+    else:
+        os.mkdir(path)
+        path = path + "\\"+i[0]
+        os.mkdir(path)
 
     uClient = uReq(url)
     page_html = uClient.read()
@@ -281,15 +311,21 @@ for i in reader:
     page_html4 = uClient4.read()
     uClient4.close()
 
+    uClient5 = uReq(url5)
+    page_html5 = uClient5.read()
+    uClient5.close()
+
     basic_info = to_json()
     population = to_json2()
     income_careers = to_json3()
     housing = to_json4()
+    education = to_json5()
 
     filepath_basic = path + "\\" + "basic_info.html"
     filepath_population = path + "\\" + "population.html"
     filepath_income_careers = path+ "\\" + "income_careers.html"
     filepath_housing = path + "\\" + "housing.html"
+    filepath_education = path + "\\" + "education.html"
 
     file_basic = open(filepath_basic, 'w')
     file_basic.write(str(page_html))
@@ -301,6 +337,10 @@ for i in reader:
     file_income_careers.write(str(page_html3))
 
     file_housing = open(filepath_housing,'w')
+    file_housing.write(str(page_html4))
+
+    file_housing = open(filepath_education,'w')
+    file_housing.write(str(page_html5))
 
 
 
