@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup as soup
 
 from urllib.request import urlopen as uReq
 
-url = "http://www.usa.com/99509-ak-school-district.htm"
+url = "http://www.usa.com/99501-ak-school-district.htm"
 
 uClient = uReq(url)
 
@@ -27,3 +27,5 @@ for i in school_container1:
 for i in school_container2:
     index+=1
     dict [index] = i.text
+
+print(dict)

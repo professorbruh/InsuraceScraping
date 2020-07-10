@@ -253,7 +253,7 @@ def to_json4():
     return outer_dict
 
 def to_json5():
-    parsed_page = soup(page_html, "html.parser")
+    parsed_page = soup(page_html5, "html.parser")
 
     school_container1 = parsed_page.find_all("div", class_="plb")
 
@@ -361,7 +361,6 @@ for i in reader:
 
     file_housing = open(filepath_education,'w')
     file_housing.write(str(page_html5))
-
 
     print(i[0])
 
